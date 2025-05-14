@@ -1,9 +1,10 @@
 
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const HeroSection = () => {
   return (
-    <div className="flex flex-col items-center justify-center py-12 md:py-20 text-center">
+    <div className="flex flex-col items-center justify-center py-12 text-center">
       <h1 className="text-5xl md:text-7xl lg:text-8xl font-mono font-bold mb-6 tracking-tighter">
         <span className="gradient-text">LAUNCHCORE</span>
       </h1>
@@ -17,12 +18,12 @@ const HeroSection = () => {
         </p>
       </div>
       
-      <a 
-        href="#signup"
+      <Link 
+        to="/signup"
         className="px-6 py-2.5 font-mono text-sm tracking-wider uppercase border border-[#FF5F1F] text-[#FF5F1F] hover:bg-[#FF5F1F]/10 transition-colors"
       >
         SIGN UP NOW
-      </a>
+      </Link>
     </div>
   );
 };
