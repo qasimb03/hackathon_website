@@ -1,6 +1,5 @@
 
 import { useEffect, useState } from "react";
-import { Card } from "@/components/ui/card";
 
 interface TimeLeft {
   days: number;
@@ -53,23 +52,26 @@ const CountdownTimer = ({ targetDate }: CountdownTimerProps) => {
   }, [targetDate]);
 
   return (
-    <div className="w-full py-10">
-      <h2 className="font-heading text-lg md:text-xl text-center mb-6 text-muted-foreground">
-        Registration Opens In
-      </h2>
-      <div className="grid grid-cols-4 gap-3 md:gap-6">
+    <div className="w-full py-10 font-mono">
+      <div className="grid grid-cols-4 gap-3 md:gap-8">
         {Object.entries(timeLeft).map(([unit, value]) => (
-          <Card 
+          <div 
             key={unit} 
-            className="bg-hackathon-muted border-none p-2 md:p-4 flex flex-col items-center justify-center"
+            className="flex flex-col items-center"
           >
-            <span className="text-xl md:text-4xl font-heading font-bold">
-              {value < 10 ? `0${value}` : value}
-            </span>
-            <span className="text-xs md:text-sm uppercase font-medium text-muted-foreground mt-1">
-              {unit}
-            </span>
-          </Card>
+            <div className="relative w-full">
+              <div className="bg-hackathon-muted/30 backdrop-blur-sm border border-hackathon-accent/20 p-2 md:p-4 aspect-square flex items-center justify-center">
+                <span className="text-2xl md:text-5xl font-mono tracking-tighter text-hackathon-accent">
+                  {value < 10 ? `0${value}` : value}
+                </span>
+              </div>
+              <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 bg-background px-2">
+                <span className="text-[10px] md:text-xs uppercase font-mono tracking-wider text-muted-foreground">
+                  {unit}
+                </span>
+              </div>
+            </div>
+          </div>
         ))}
       </div>
     </div>

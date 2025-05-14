@@ -1,5 +1,5 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -57,5 +57,10 @@
 
   .gradient-text {
     @apply bg-clip-text text-transparent bg-gradient-to-r from-hackathon-accent via-white to-hackathon-accent animate-pulse-slow;
+  }
+  
+  .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: -0.03em;
   }
 }
