@@ -45,6 +45,8 @@
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+
+    --hackathon-orange: 16 100% 50%;
   }
 
   * {
@@ -56,7 +58,7 @@
   }
 
   .gradient-text {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-hackathon-accent via-white to-hackathon-accent animate-pulse-slow;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#FF5F1F] via-white to-[#FF5F1F] animate-pulse-slow;
   }
   
   .font-mono {

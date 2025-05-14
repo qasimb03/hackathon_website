@@ -70,7 +70,7 @@ export default {
 				},
 				hackathon: {
 					dark: '#0F0F0F',
-					accent: '#FF4D4D',
+					accent: '#FF5F1F',
 					muted: '#3A3A3A',
 					light: '#F9F9F9',
 				},

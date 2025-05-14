@@ -4,11 +4,11 @@ import { motion } from "framer-motion";
 const HeroSection = () => {
   return (
     <div className="flex flex-col items-center justify-center py-12 md:py-20 text-center">
-      <h1 className="text-5xl md:text-7xl lg:text-8xl font-mono font-bold mb-10 tracking-tighter">
-        <span className="gradient-text">ELITE</span>
+      <h1 className="text-5xl md:text-7xl lg:text-8xl font-mono font-bold mb-6 tracking-tighter">
+        <span className="gradient-text">LAUNCHCORE</span>
       </h1>
       
-      <div className="space-y-10 max-w-3xl mx-auto">
+      <div className="space-y-4 max-w-3xl mx-auto mb-8">
         <p className="text-xl md:text-3xl font-mono tracking-tight leading-tight">
           <span className="text-white">10</span>{" "}
           <span className="text-muted-foreground">TEAMS</span>{" "}
@@ -16,6 +16,13 @@ const HeroSection = () => {
           <span className="text-muted-foreground">FUNDED</span>
         </p>
       </div>
+      
+      <a 
+        href="#signup"
+        className="px-6 py-2.5 font-mono text-sm tracking-wider uppercase border border-[#FF5F1F] text-[#FF5F1F] hover:bg-[#FF5F1F]/10 transition-colors"
+      >
+        SIGN UP NOW
+      </a>
     </div>
   );
 };
