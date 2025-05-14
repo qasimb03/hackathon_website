@@ -24,19 +24,11 @@ const Index = () => {
               className="h-10 w-auto mr-2" 
             />
           </div>
-          <nav>
-            <Link 
-              to="/signup"
-              className="px-5 py-2 font-mono text-xs tracking-wider uppercase border border-[#FF5F1F] text-[#FF5F1F] hover:bg-[#FF5F1F]/10 transition-colors"
-            >
-              REGISTER
-            </Link>
-          </nav>
         </div>
       </header>
       
       {/* Main Content */}
-      <main className="flex-grow container max-w-5xl mx-auto px-4 py-8">
+      <main className="flex-grow container max-w-5xl mx-auto px-4">
         <div className="flex flex-col items-center justify-center h-[calc(100vh-150px)]">
           {/* Hero Section */}
           <HeroSection />
@@ -48,9 +40,9 @@ const Index = () => {
         </div>
       </main>
       
-      {/* Footer */}
-      <footer className="w-full py-6 mt-auto">
-        <div className="container max-w-5xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
+      {/* Footer - Moved up so everything fits on one screen without scrolling */}
+      <footer className="w-full py-4">
+        <div className="container max-w-5xl mx-auto px-4 flex justify-center">
           <div className="text-muted-foreground text-xs font-mono">
             © {new Date().getFullYear()} LAUNCHCORE
           </div>

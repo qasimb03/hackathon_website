@@ -20,7 +20,7 @@ const HeroSection = () => {
       
       <Link 
         to="/signup"
-        className="px-6 py-2.5 font-mono text-sm tracking-wider uppercase border border-[#FF5F1F] text-[#FF5F1F] hover:bg-[#FF5F1F]/10 transition-colors"
+        className="px-8 py-3 font-mono text-base tracking-wider uppercase border-2 border-[#FF5F1F] text-[#FF5F1F] hover:bg-[#FF5F1F]/10 transition-colors"
       >
         SIGN UP NOW
       </Link>
