@@ -39,14 +39,7 @@ const SignupPage = () => {
               />
             </Link>
           </div>
-          <nav>
-            <Link 
-              to="/"
-              className="px-5 py-2 font-mono text-xs tracking-wider uppercase border border-[#FF5F1F] text-[#FF5F1F] hover:bg-[#FF5F1F]/10 transition-colors"
-            >
-              BACK
-            </Link>
-          </nav>
+          {/* Removed the BACK navigation link as requested */}
         </div>
       </header>
       
@@ -77,9 +70,9 @@ const SignupPage = () => {
         </div>
       </main>
       
-      {/* Footer */}
-      <footer className="w-full py-6 mt-auto">
-        <div className="container max-w-5xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
+      {/* Footer - Using the same styling as the Index page */}
+      <footer className="w-full py-4">
+        <div className="container max-w-5xl mx-auto px-4 flex justify-center">
           <div className="text-muted-foreground text-xs font-mono">
             © {new Date().getFullYear()} LAUNCHCORE
           </div>

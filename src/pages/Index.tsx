@@ -33,14 +33,14 @@ const Index = () => {
           {/* Hero Section */}
           <HeroSection />
           
-          {/* Countdown Timer - Moved higher in the layout */}
-          <div className="w-full max-w-3xl mt-12">
+          {/* Countdown Timer - Moved slightly higher */}
+          <div className="w-full max-w-3xl mt-8">
             <CountdownTimer targetDate={targetDate} />
           </div>
         </div>
       </main>
       
-      {/* Footer - Moved up so everything fits on one screen without scrolling */}
+      {/* Footer */}
       <footer className="w-full py-4">
         <div className="container max-w-5xl mx-auto px-4 flex justify-center">
           <div className="text-muted-foreground text-xs font-mono">
