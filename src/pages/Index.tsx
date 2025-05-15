@@ -16,13 +16,6 @@ const Index = () => {
       {/* Header */}
       <header className="w-full py-6">
         <div className="container max-w-5xl mx-auto px-4 flex justify-between items-center">
-          <div className="flex items-center">
-            <img 
-              src="/lovable-uploads/7646f7f3-ee95-4104-8466-4427f94b7672.png" 
-              alt="LaunchCore Logo" 
-              className="h-10 w-auto mr-2" 
-            />
-          </div>
         </div>
       </header>
       

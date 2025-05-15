@@ -20,6 +20,7 @@ const SignupForm = ({ variant = "default" }: { variant?: "default" | "outline" }
     phone_number: "",
     email: "",
     idea: "",
+    linkedin_profile: "",
   });
   const [submitted, setSubmitted] = useState(false);
   const navigate = useNavigate();
@@ -65,7 +66,7 @@ const SignupForm = ({ variant = "default" }: { variant?: "default" | "outline" }
       setEmailError('Failed to submit. Please try again.');
     } else {
       setSubmitted(true);
-      setForm({ first_name: '', last_name: '', phone_number: '', email: '', idea: '' });
+      setForm({ first_name: '', last_name: '', phone_number: '', email: '', idea: '', linkedin_profile: '' });
       setOpen(false);
       navigate('/');
     }
@@ -146,6 +147,18 @@ const SignupForm = ({ variant = "default" }: { variant?: "default" | "outline" }
               {emailError && <p className="text-red-500 text-sm mt-1">{emailError}</p>}
             </div>
             <div>
+              <Label htmlFor="linkedin_profile" className="text-orange-300">LinkedIn Link *</Label>
+              <Input
+                id="linkedin_profile"
+                name="linkedin_profile"
+                value={form.linkedin_profile}
+                required
+                onChange={handleChange}
+                className="mt-1 bg-black border-orange-500/30"
+                placeholder="linkedin.com/in/example-profile"
+              />
+            </div>
+            <div>
               <Label htmlFor="idea" className="text-orange-300">Idea (Optional)</Label>
               <Textarea
                 id="idea"
@@ -156,14 +169,14 @@ const SignupForm = ({ variant = "default" }: { variant?: "default" | "outline" }
                 placeholder="Describe your idea!"
               />
             </div>
-            <div className="flex flex-col gap-2 mt-2">
+            <div className="flex flex-col gap-2 mt-2 items-center justify-center">
               <a
                 href={YC_LINK}
-                className="text-orange-400 underline hover:text-orange-300 transition story-link self-start"
+                className="text-orange-400 underline hover:text-orange-300 transition story-link"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Revolve your ideas around YC Requests for Startups
+                RFS - Get Inspired
               </a>
               <Button
                 type="submit"
