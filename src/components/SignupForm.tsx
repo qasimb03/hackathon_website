@@ -1,53 +1,193 @@
-
-import { useState } from "react";
+import React, { useState } from "react";
+import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogClose } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Separator } from "@/components/ui/separator";
-import { Card } from "@/components/ui/card";
-import { useToast } from "@/hooks/use-toast";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { supabase } from "@/utils/supabaseClient";
+import { useNavigate } from "react-router-dom";
 
-const SignupForm = () => {
-  const [email, setEmail] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsLoading(true);
+const YC_LINK = "https://www.ycombinator.com/rfs/";
 
-    // Simulate API call
-    setTimeout(() => {
-      setIsLoading(false);
-      toast({
-        title: "Success!",
-        description: "You're registered. We'll send more details soon.",
-      });
-      setEmail("");
-    }, 1000);
+const SignupForm = ({ variant = "default" }: { variant?: "default" | "outline" }) => {
+  const [open, setOpen] = useState(false);
+  const [emailError, setEmailError] = useState('');
+
+  const [form, setForm] = useState({
+    first_name: "",
+    last_name: "",
+    phone_number: "",
+    email: "",
+    idea: "",
+  });
+  const [submitted, setSubmitted] = useState(false);
+  const navigate = useNavigate();
+
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    if (name === 'phone_number') {
+      const digitsOnly = value.replace(/\D/g, '').slice(0, 10); // max 10 digits
+      setForm(prev => ({ ...prev, [name]: digitsOnly }));
+    } else {
+      setForm(prev => ({ ...prev, [name]: value }));
+    }
   };
-
+  
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setEmailError(''); // clear previous error
+  
+    const { data: existingUser, error: fetchError } = await supabase
+      .from('hackathon_signups')
+      .select('email')
+      .eq('email', form.email)
+      .single();
+  
+    if (fetchError && fetchError.code !== 'PGRST116') {
+      console.error('Error checking email:', fetchError);
+      setEmailError('Something went wrong. Please try again.');
+      return;
+    }
+  
+    if (existingUser) {
+      setEmailError('This email is already registered.');
+      return;
+    }
+  
+    const { data, error } = await supabase
+      .from('hackathon_signups')
+      .insert([form]);
+  
+    if (error) {
+      console.error('Insert error:', error);
+      setEmailError('Failed to submit. Please try again.');
+    } else {
+      setSubmitted(true);
+      setForm({ first_name: '', last_name: '', phone_number: '', email: '', idea: '' });
+      setOpen(false);
+      navigate('/');
+    }
+  };
+  
+  
   return (
-    <Card className="w-full max-w-md mx-auto bg-hackathon-muted border-none p-6">
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <div>
-          <Input
-            type="email"
-            placeholder="Enter your email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="bg-hackathon-dark border-[#FF5F1F]/30 focus:border-[#FF5F1F] focus-visible:ring-[#FF5F1F] h-12"
-            required
-          />
-        </div>
-        <Button 
-          type="submit" 
-          className="w-full bg-[#FF5F1F] hover:bg-[#FF5F1F]/90 text-white font-medium h-12"
-          disabled={isLoading}
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogTrigger asChild>
+        <Button
+          variant={variant}
+          className={`px-20 py-6 text-lg font-bold rounded shadow transition-all duration-200 min-w-[140px] border-2 border-orange-500 
+            ${variant === "outline" ? "bg-transparent text-orange-500 hover:bg-orange-500 hover:text-black" : "bg-orange-500 text-black hover:bg-orange-400 hover:text-black shadow-lg hover:scale-105 hover:shadow-xl"}`}
         >
-          {isLoading ? "Registering..." : "REGISTER NOW"}
+          Register
         </Button>
-      </form>
-    </Card>
+      </DialogTrigger>
+      <DialogContent className="bg-black/95 border-orange-600">
+        <DialogHeader>
+          <DialogTitle className="text-orange-500 ">REGISTER FOR LAUNCHCORE</DialogTitle>
+        </DialogHeader>
+        {!submitted ? (
+          <form className="flex flex-col gap-4 mt-4" onSubmit={handleSubmit}>
+            <div>
+              <Label htmlFor="first_name" className="text-orange-300">First Name *</Label>
+              <Input
+                id="first_name"
+                name="first_name"
+                type="text"
+                required
+                value={form.first_name}
+                onChange={handleChange}
+                className="mt-1 bg-black border-orange-500/30 placeholder:text-gray-500"
+                placeholder="John"
+              />
+            </div>
+            <div>
+              <Label htmlFor="last_name" className="text-orange-300">Last Name *</Label>
+              <Input
+                id="last_name"
+                name="last_name"
+                type="text"
+                required
+                value={form.last_name}
+                onChange={handleChange}
+                className="mt-1 bg-black border-orange-500/30"
+                placeholder="Doe"
+              />
+            </div>
+            <div>
+              <Label htmlFor="phone_number" className="text-orange-300">phone_number Number *</Label>
+              <Input
+                id="phone_number"
+                name="phone_number"
+                type="tel"
+                required
+                value={form.phone_number}
+                onChange={handleChange}
+                className="mt-1 bg-black border-orange-500/30"
+                placeholder="(555)-123-4567"
+                pattern="\d{10}"          // Exactly 10 digits
+                maxLength={10}
+                inputMode="numeric"  
+              />
+            </div>
+            <div>
+              <Label htmlFor="email" className="text-orange-300">Email *</Label>
+              <Input
+                id="email"
+                name="email"
+                type="email"
+                required
+                value={form.email}
+                onChange={handleChange}
+                className={`mt-1 bg-black border-orange-500/30 ${emailError ? 'border-red-500 text-red-300 placeholder-red-400' : ''}`}
+                placeholder="your@email.com"
+              />
+              {emailError && <p className="text-red-500 text-sm mt-1">{emailError}</p>}
+            </div>
+            <div>
+              <Label htmlFor="idea" className="text-orange-300">Idea (Optional)</Label>
+              <Textarea
+                id="idea"
+                name="idea"
+                value={form.idea}
+                onChange={handleChange}
+                className="mt-1 bg-black border-orange-500/30 min-h-[68px]"
+                placeholder="Describe your idea!"
+              />
+            </div>
+            <div className="flex flex-col gap-2 mt-2">
+              <a
+                href={YC_LINK}
+                className="text-orange-400 underline hover:text-orange-300 transition story-link self-start"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Revolve your ideas around YC Requests for Startups
+              </a>
+              <Button
+                type="submit"
+                className="w-full mt-4 bg-orange-500 text-black hover:bg-orange-400 font-bold"
+              >
+                Submit
+              </Button>
+            </div>
+          </form>
+        ) : (
+          <div className="py-8 flex flex-col items-center">
+            <div className="text-green-400 text-lg font-bold mb-6 animate-fade-in">
+              Thank you for registering!
+            </div>
+            <Button
+              className="bg-orange-500 text-black hover:bg-orange-400 font-bold"
+              onClick={() => setOpen(false)}
+            >
+              Close
+            </Button>
+          </div>
+        )}
+      </DialogContent>
+    </Dialog>
   );
 };
 
