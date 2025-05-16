@@ -13,6 +13,7 @@ const YC_LINK = "https://www.ycombinator.com/rfs/";
 const SignupForm = ({ variant = "default" }: { variant?: "default" | "outline" }) => {
   const [open, setOpen] = useState(false);
   const [emailError, setEmailError] = useState('');
+  const [registerDisabled, setRegisterDisabled] = useState(true);
 
   const [form, setForm] = useState({
     first_name: "",
@@ -78,6 +79,7 @@ const SignupForm = ({ variant = "default" }: { variant?: "default" | "outline" }
       <DialogTrigger asChild>
         <Button
           variant={variant}
+          disabled={registerDisabled}
           className={`px-20 py-6 text-lg font-bold rounded shadow transition-all duration-200 min-w-[140px] border-2 border-orange-500 
             ${variant === "outline" ? "bg-transparent text-orange-500 hover:bg-orange-500 hover:text-black" : "bg-orange-500 text-black hover:bg-orange-400 hover:text-black shadow-lg hover:scale-105 hover:shadow-xl"}`}
         >
@@ -89,7 +91,7 @@ const SignupForm = ({ variant = "default" }: { variant?: "default" | "outline" }
           <DialogTitle className="text-orange-500 ">REGISTER FOR LAUNCHCORE</DialogTitle>
         </DialogHeader>
         {!submitted ? (
-          <form className="flex flex-col gap-4 mt-4" onSubmit={handleSubmit}>
+          <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
             <div>
               <Label htmlFor="first_name" className="text-orange-300">First Name *</Label>
               <Input
