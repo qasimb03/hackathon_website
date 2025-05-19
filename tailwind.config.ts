@@ -69,8 +69,8 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				},
 				hackathon: {
-					dark: '#0F0F0F',
-					accent: '#FF5F1F',
+					dark: '#2772A0',
+					accent: '#CCDDEA',
 					muted: '#3A3A3A',
 					light: '#F9F9F9',
 				},

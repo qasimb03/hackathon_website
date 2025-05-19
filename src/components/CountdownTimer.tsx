@@ -60,13 +60,13 @@ const CountdownTimer = ({ targetDate }: CountdownTimerProps) => {
             className="flex flex-col items-center"
           >
             <div className="relative w-full">
-              <div className="bg-hackathon-muted/30 backdrop-blur-sm border border-hackathon-accent/20 p-2 md:p-4 aspect-square flex items-center justify-center">
+              <div className="bg-hackathon-dark backdrop-blur-sm border border-hackathon-accent p-2 md:p-4 aspect-square flex items-center justify-center">
                 <span className="text-2xl md:text-5xl font-mono tracking-tighter text-hackathon-accent">
                   {value < 10 ? `0${value}` : value}
                 </span>
               </div>
-              <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 bg-background px-2">
-                <span className="text-[10px] md:text-xs uppercase font-mono tracking-wider text-muted-foreground">
+              <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 bg-hackathon-dark px-2">
+                <span className="text-[10px] md:text-xs uppercase font-mono tracking-wider text-hackathon-accent">
                   {unit}
                 </span>
               </div>

@@ -40,7 +40,7 @@ const Index = () => {
       {/* Footer */}
       <footer className="w-full py-4">
         <div className="container max-w-5xl mx-auto px-4 flex justify-center">
-          <div className="text-muted-foreground text-xs font-mono">
+          <div className="text-hackathon-accent text-xs font-mono">
             © {new Date().getFullYear()} WovenTech
           </div>
         </div>

@@ -13,7 +13,7 @@ const YC_LINK = "https://www.ycombinator.com/rfs/";
 const SignupForm = ({ variant = "default" }: { variant?: "default" | "outline" }) => {
   const [open, setOpen] = useState(false);
   const [emailError, setEmailError] = useState('');
-  const [registerDisabled, setRegisterDisabled] = useState(true);
+  const [registerDisabled, setRegisterDisabled] = useState(false);
 
   const [form, setForm] = useState({
     first_name: "",
@@ -80,20 +80,19 @@ const SignupForm = ({ variant = "default" }: { variant?: "default" | "outline" }
         <Button
           variant={variant}
           disabled={registerDisabled}
-          className={`px-20 py-6 text-lg font-bold rounded shadow transition-all duration-200 min-w-[140px] border-2 border-orange-500 
-            ${variant === "outline" ? "bg-transparent text-orange-500 hover:bg-orange-500 hover:text-black" : "bg-orange-500 text-black hover:bg-orange-400 hover:text-black shadow-lg hover:scale-105 hover:shadow-xl"}`}
+          className={`px-20 py-6 text-lg font-bold rounded shadow transition-all duration-200 min-w-[140px] border-2 border-hackathon-accent bg-transparent text-hackathon-accent hover:bg-hackathon-accent hover:text-hackathon-dark`}
         >
           Register
         </Button>
       </DialogTrigger>
-      <DialogContent className="bg-black/95 border-orange-600">
+      <DialogContent className="bg-hackathon-dark border-hackathon-accent">
         <DialogHeader>
-          <DialogTitle className="text-orange-500 ">REGISTER FOR LAUNCHCORE</DialogTitle>
+          <DialogTitle className="text-hackathon-accent text-center">Register For Hack2Fund</DialogTitle>
         </DialogHeader>
         {!submitted ? (
           <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
             <div>
-              <Label htmlFor="first_name" className="text-orange-300">First Name *</Label>
+              <Label htmlFor="first_name" className="text-hackathon-accent">First Name *</Label>
               <Input
                 id="first_name"
                 name="first_name"
@@ -101,12 +100,12 @@ const SignupForm = ({ variant = "default" }: { variant?: "default" | "outline" }
                 required
                 value={form.first_name}
                 onChange={handleChange}
-                className="mt-1 bg-black border-orange-500/30 placeholder:text-gray-500"
+                className="mt-1 bg-hackathon-accent border-hackathon-accent placeholder:text-hackathon-dark text-hackathon-dark"
                 placeholder="John"
               />
             </div>
             <div>
-              <Label htmlFor="last_name" className="text-orange-300">Last Name *</Label>
+              <Label htmlFor="last_name" className="text-hackathon-accent">Last Name *</Label>
               <Input
                 id="last_name"
                 name="last_name"
@@ -114,12 +113,12 @@ const SignupForm = ({ variant = "default" }: { variant?: "default" | "outline" }
                 required
                 value={form.last_name}
                 onChange={handleChange}
-                className="mt-1 bg-black border-orange-500/30"
+                className="mt-1 bg-hackathon-accent border-hackathon-accent placeholder:text-hackathon-dark text-hackathon-dark"
                 placeholder="Doe"
               />
             </div>
             <div>
-              <Label htmlFor="phone_number" className="text-orange-300">phone_number Number *</Label>
+              <Label htmlFor="phone_number" className="text-hackathon-accent-300">Phone Number *</Label>
               <Input
                 id="phone_number"
                 name="phone_number"
@@ -127,7 +126,7 @@ const SignupForm = ({ variant = "default" }: { variant?: "default" | "outline" }
                 required
                 value={form.phone_number}
                 onChange={handleChange}
-                className="mt-1 bg-black border-orange-500/30"
+                className="mt-1 bg-hackathon-accent border-hackathon-accent placeholder:text-hackathon-dark text-hackathon-dark"
                 placeholder="(555)-123-4567"
                 pattern="\d{10}"          // Exactly 10 digits
                 maxLength={10}
@@ -135,7 +134,7 @@ const SignupForm = ({ variant = "default" }: { variant?: "default" | "outline" }
               />
             </div>
             <div>
-              <Label htmlFor="email" className="text-orange-300">Email *</Label>
+              <Label htmlFor="email" className="text-hackathon-accent-300">Email *</Label>
               <Input
                 id="email"
                 name="email"
@@ -143,38 +142,38 @@ const SignupForm = ({ variant = "default" }: { variant?: "default" | "outline" }
                 required
                 value={form.email}
                 onChange={handleChange}
-                className={`mt-1 bg-black border-orange-500/30 ${emailError ? 'border-red-500 text-red-300 placeholder-red-400' : ''}`}
+                className={`mt-1 bg-hackathon-accent border-hackathon-dark placeholder:text-hackathon-dark ${emailError ? 'border-red-500 text-red-300 placeholder-red-400' : ''}`}
                 placeholder="your@email.com"
               />
               {emailError && <p className="text-red-500 text-sm mt-1">{emailError}</p>}
             </div>
             <div>
-              <Label htmlFor="linkedin_profile" className="text-orange-300">LinkedIn Link *</Label>
+              <Label htmlFor="linkedin_profile" className="text-hackathon-accent-300">LinkedIn Link *</Label>
               <Input
                 id="linkedin_profile"
                 name="linkedin_profile"
                 value={form.linkedin_profile}
                 required
                 onChange={handleChange}
-                className="mt-1 bg-black border-orange-500/30"
+                className="mt-1 bg-hackathon-accent border-hackathon-accent placeholder:text-hackathon-dark text-hackathon-dark"
                 placeholder="linkedin.com/in/example-profile"
               />
             </div>
             <div>
-              <Label htmlFor="idea" className="text-orange-300">Idea (Optional)</Label>
+              <Label htmlFor="idea" className="text-hackathon-accent-300">Idea(s) [Optional]</Label>
               <Textarea
                 id="idea"
                 name="idea"
                 value={form.idea}
                 onChange={handleChange}
-                className="mt-1 bg-black border-orange-500/30 min-h-[68px]"
-                placeholder="Describe your idea!"
+                className="mt-1 bg-hackathon-accent border-hackathon-accent placeholder:text-hackathon-dark text-hackathon-dark"
+                placeholder="Describe your idea(s)!"
               />
             </div>
             <div className="flex flex-col gap-2 mt-2 items-center justify-center">
               <a
                 href={YC_LINK}
-                className="text-orange-400 underline hover:text-orange-300 transition story-link"
+                className="text-hackathon-accent underline hover:text-hackathon-accent-300 transition story-link"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -182,7 +181,7 @@ const SignupForm = ({ variant = "default" }: { variant?: "default" | "outline" }
               </a>
               <Button
                 type="submit"
-                className="w-full mt-4 bg-orange-500 text-black hover:bg-orange-400 font-bold"
+                className="w-full mt-4 hover:bg-hackathon-accent hover:border-hackathon-accent hover:text-hackathon-dark bg-hackathon-dark text-hackathon-accent font-bold"
               >
                 Submit
               </Button>
@@ -194,7 +193,7 @@ const SignupForm = ({ variant = "default" }: { variant?: "default" | "outline" }
               Thank you for registering!
             </div>
             <Button
-              className="bg-orange-500 text-black hover:bg-orange-400 font-bold"
+              className="bg-hackathon-accent-500 text-black hover:bg-hackathon-accent-400 font-bold"
               onClick={() => setOpen(false)}
             >
               Close
