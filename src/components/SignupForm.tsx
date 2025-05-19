@@ -29,7 +29,8 @@ const SignupForm = ({ variant = "default" }: { variant?: "default" | "outline" }
     phone_number: "",
     email: "",
     idea: "",
-    linkedin_profile: "",
+    linkedin: "",
+    diet: ""
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -76,7 +77,8 @@ const SignupForm = ({ variant = "default" }: { variant?: "default" | "outline" }
         phone_number: "",
         email: "",
         idea: "",
-        linkedin_profile: "",
+        linkedin: "",
+        diet: ""
       });
       setOpen(false);
       navigate("/");
@@ -164,7 +166,7 @@ const SignupForm = ({ variant = "default" }: { variant?: "default" | "outline" }
                 required
                 value={form.email}
                 onChange={handleChange}
-                className={`mt-1 bg-hackathon-accent border-hackathon-dark placeholder:text-hackathon-dark ${
+                className={`mt-1 bg-hackathon-accent border-hackathon-dark text-hackathon-dark placeholder:text-hackathon-dark ${
                   emailError ? "border-red-500 text-red-300 placeholder-red-400" : ""
                 }`}
                 placeholder="your@email.com"
@@ -172,17 +174,31 @@ const SignupForm = ({ variant = "default" }: { variant?: "default" | "outline" }
               {emailError && <p className="text-red-500 text-sm mt-1">{emailError}</p>}
             </div>
             <div>
-              <Label htmlFor="linkedin_profile" className="text-hackathon-accent">
+              <Label htmlFor="linkedin" className="text-hackathon-accent">
                 LinkedIn Link *
               </Label>
               <Input
-                id="linkedin_profile"
-                name="linkedin_profile"
+                id="linkedin"
+                name="linkedin"
                 required
-                value={form.linkedin_profile}
+                value={form.linkedin}
                 onChange={handleChange}
                 className="mt-1 bg-hackathon-accent border-hackathon-accent placeholder:text-hackathon-dark text-hackathon-dark"
                 placeholder="linkedin.com/in/example-profile"
+              />
+            </div>
+            <div>
+              <Label htmlFor="diet" className="text-hackathon-accent">
+                Dietary Restrictions *
+              </Label>
+              <Input
+                id="diet"
+                name="diet"
+                required
+                value={form.diet}
+                onChange={handleChange}
+                className="mt-1 bg-hackathon-accent border-hackathon-accent placeholder:text-hackathon-dark text-hackathon-dark"
+                placeholder="Vegan/Halal/None"
               />
             </div>
             <div>

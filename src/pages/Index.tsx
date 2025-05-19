@@ -7,7 +7,7 @@ import SignupForm from '@/components/SignupForm';
 const Index = () => {
   // Set the target date for the countdown (30 days from now)
   const [registrationDate] = useState(() => {
-    const date = new Date("2025-05-23T19:00:00");
+    const date = new Date("2025-05-24T23:59:59");
     return date;
   });
 
