@@ -14,6 +14,16 @@ const InfoSection = () => {
         </p>
       </div>
       <div className="space-y-4 max-w-3xl mx-auto">
+        <p className="text-md md:text-lg font-mono tracking-tight leading-tight">
+          <span className="text-hackathon-accent">Free Food & Swag</span>{" "}
+        </p>
+      </div>
+      <div className="space-y-4 max-w-3xl mx-auto mb-5">
+        <p className="text-md md:text-lg font-mono tracking-tight leading-tight">
+          <span className="text-hackathon-accent">Keynote Speakers & Networking</span>{" "}
+        </p>
+      </div>
+      <div className="space-y-4 max-w-3xl mx-auto">
         <p className="text-xl md:text-2xl font-mono tracking-tight leading-tight">
           <span className="text-hackathon-accent">May 30 - June 1</span>{" "}
         </p>
