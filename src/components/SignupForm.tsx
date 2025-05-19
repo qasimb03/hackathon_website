@@ -19,7 +19,7 @@ const YC_LINK = "https://www.ycombinator.com/rfs/";
 const SignupForm = ({ variant = "default" }: { variant?: "default" | "outline" }) => {
   const [open, setOpen] = useState(false);
   const [emailError, setEmailError] = useState("");
-  const [registerDisabled, setRegisterDisabled] = useState(false);
+  const [registerDisabled, setRegisterDisabled] = useState(true);
   const [submitted, setSubmitted] = useState(false);
   const navigate = useNavigate();
 
