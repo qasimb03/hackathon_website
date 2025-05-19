@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogClose } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogTrigger,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogClose,
+} from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -7,13 +14,14 @@ import { Textarea } from "@/components/ui/textarea";
 import { supabase } from "@/utils/supabaseClient";
 import { useNavigate } from "react-router-dom";
 
-
 const YC_LINK = "https://www.ycombinator.com/rfs/";
 
 const SignupForm = ({ variant = "default" }: { variant?: "default" | "outline" }) => {
   const [open, setOpen] = useState(false);
-  const [emailError, setEmailError] = useState('');
+  const [emailError, setEmailError] = useState("");
   const [registerDisabled, setRegisterDisabled] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const navigate = useNavigate();
 
   const [form, setForm] = useState({
     first_name: "",
@@ -23,76 +31,84 @@ const SignupForm = ({ variant = "default" }: { variant?: "default" | "outline" }
     idea: "",
     linkedin_profile: "",
   });
-  const [submitted, setSubmitted] = useState(false);
-  const navigate = useNavigate();
-
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    if (name === 'phone_number') {
-      const digitsOnly = value.replace(/\D/g, '').slice(0, 10); // max 10 digits
-      setForm(prev => ({ ...prev, [name]: digitsOnly }));
+    if (name === "phone_number") {
+      const digitsOnly = value.replace(/\D/g, "").slice(0, 10);
+      setForm((prev) => ({ ...prev, [name]: digitsOnly }));
     } else {
-      setForm(prev => ({ ...prev, [name]: value }));
+      setForm((prev) => ({ ...prev, [name]: value }));
     }
   };
-  
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setEmailError(''); // clear previous error
-  
+    setEmailError("");
+
     const { data: existingUser, error: fetchError } = await supabase
-      .from('hackathon_signups')
-      .select('email')
-      .eq('email', form.email)
+      .from("hackathon_signups")
+      .select("email")
+      .eq("email", form.email)
       .single();
-  
-    if (fetchError && fetchError.code !== 'PGRST116') {
-      console.error('Error checking email:', fetchError);
-      setEmailError('Something went wrong. Please try again.');
+
+    if (fetchError && fetchError.code !== "PGRST116") {
+      console.error("Error checking email:", fetchError);
+      setEmailError("Something went wrong. Please try again.");
       return;
     }
-  
+
     if (existingUser) {
-      setEmailError('This email is already registered.');
+      setEmailError("This email is already registered.");
       return;
     }
-  
-    const { data, error } = await supabase
-      .from('hackathon_signups')
-      .insert([form]);
-  
+
+    const { data, error } = await supabase.from("hackathon_signups").insert([form]);
+
     if (error) {
-      console.error('Insert error:', error);
-      setEmailError('Failed to submit. Please try again.');
+      console.error("Insert error:", error);
+      setEmailError("Failed to submit. Please try again.");
     } else {
       setSubmitted(true);
-      setForm({ first_name: '', last_name: '', phone_number: '', email: '', idea: '', linkedin_profile: '' });
+      setForm({
+        first_name: "",
+        last_name: "",
+        phone_number: "",
+        email: "",
+        idea: "",
+        linkedin_profile: "",
+      });
       setOpen(false);
-      navigate('/');
+      navigate("/");
     }
   };
-  
-  
+
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button
           variant={variant}
           disabled={registerDisabled}
-          className={`px-20 py-6 text-lg font-bold rounded shadow transition-all duration-200 min-w-[140px] border-2 border-hackathon-accent bg-transparent text-hackathon-accent hover:bg-hackathon-accent hover:text-hackathon-dark`}
+          className="px-20 py-6 text-lg font-bold rounded shadow transition-all duration-200 min-w-[140px] border-2 border-hackathon-accent bg-transparent text-hackathon-accent hover:bg-hackathon-accent hover:text-hackathon-dark"
         >
           Register
         </Button>
       </DialogTrigger>
-      <DialogContent className="bg-hackathon-dark border-hackathon-accent">
+      <DialogContent
+        className="max-h-[90vh] overflow-y-auto sm:max-w-[90%] md:max-w-[700px] bg-hackathon-dark border-hackathon-accent p-6"
+      >
         <DialogHeader>
-          <DialogTitle className="text-hackathon-accent text-center">Register For Hack2Fund</DialogTitle>
+          <DialogTitle className="text-hackathon-accent text-center">
+            Register For Hack2Fund
+          </DialogTitle>
         </DialogHeader>
+
         {!submitted ? (
-          <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
+          <form className="flex flex-col gap-4 mt-4" onSubmit={handleSubmit}>
             <div>
-              <Label htmlFor="first_name" className="text-hackathon-accent">First Name *</Label>
+              <Label htmlFor="first_name" className="text-hackathon-accent">
+                First Name *
+              </Label>
               <Input
                 id="first_name"
                 name="first_name"
@@ -105,7 +121,9 @@ const SignupForm = ({ variant = "default" }: { variant?: "default" | "outline" }
               />
             </div>
             <div>
-              <Label htmlFor="last_name" className="text-hackathon-accent">Last Name *</Label>
+              <Label htmlFor="last_name" className="text-hackathon-accent">
+                Last Name *
+              </Label>
               <Input
                 id="last_name"
                 name="last_name"
@@ -118,7 +136,9 @@ const SignupForm = ({ variant = "default" }: { variant?: "default" | "outline" }
               />
             </div>
             <div>
-              <Label htmlFor="phone_number" className="text-hackathon-accent-300">Phone Number *</Label>
+              <Label htmlFor="phone_number" className="text-hackathon-accent">
+                Phone Number *
+              </Label>
               <Input
                 id="phone_number"
                 name="phone_number"
@@ -128,13 +148,15 @@ const SignupForm = ({ variant = "default" }: { variant?: "default" | "outline" }
                 onChange={handleChange}
                 className="mt-1 bg-hackathon-accent border-hackathon-accent placeholder:text-hackathon-dark text-hackathon-dark"
                 placeholder="(555)-123-4567"
-                pattern="\d{10}"          // Exactly 10 digits
+                pattern="\d{10}"
                 maxLength={10}
-                inputMode="numeric"  
+                inputMode="numeric"
               />
             </div>
             <div>
-              <Label htmlFor="email" className="text-hackathon-accent-300">Email *</Label>
+              <Label htmlFor="email" className="text-hackathon-accent">
+                Email *
+              </Label>
               <Input
                 id="email"
                 name="email"
@@ -142,25 +164,31 @@ const SignupForm = ({ variant = "default" }: { variant?: "default" | "outline" }
                 required
                 value={form.email}
                 onChange={handleChange}
-                className={`mt-1 bg-hackathon-accent border-hackathon-dark placeholder:text-hackathon-dark ${emailError ? 'border-red-500 text-red-300 placeholder-red-400' : ''}`}
+                className={`mt-1 bg-hackathon-accent border-hackathon-dark placeholder:text-hackathon-dark ${
+                  emailError ? "border-red-500 text-red-300 placeholder-red-400" : ""
+                }`}
                 placeholder="your@email.com"
               />
               {emailError && <p className="text-red-500 text-sm mt-1">{emailError}</p>}
             </div>
             <div>
-              <Label htmlFor="linkedin_profile" className="text-hackathon-accent-300">LinkedIn Link *</Label>
+              <Label htmlFor="linkedin_profile" className="text-hackathon-accent">
+                LinkedIn Link *
+              </Label>
               <Input
                 id="linkedin_profile"
                 name="linkedin_profile"
-                value={form.linkedin_profile}
                 required
+                value={form.linkedin_profile}
                 onChange={handleChange}
                 className="mt-1 bg-hackathon-accent border-hackathon-accent placeholder:text-hackathon-dark text-hackathon-dark"
                 placeholder="linkedin.com/in/example-profile"
               />
             </div>
             <div>
-              <Label htmlFor="idea" className="text-hackathon-accent-300">Idea(s) [Optional]</Label>
+              <Label htmlFor="idea" className="text-hackathon-accent">
+                Idea(s) [Optional]
+              </Label>
               <Textarea
                 id="idea"
                 name="idea"

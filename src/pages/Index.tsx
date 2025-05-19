@@ -29,7 +29,7 @@ const Index = () => {
         <div className="flex flex-col items-center justify-center h-[calc(100vh-150px)] mt-5">
           {/* Hero Section */}
           <HeroSection />
-          <SignupForm variant="outline"/>
+          <SignupForm/>
           {/* Countdown Timer - Moved slightly higher */}
           <div className="w-full max-w-3xl mt-8">
             <CountdownTimer targetDate={registrationDate} />
