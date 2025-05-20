@@ -2,7 +2,6 @@
 import { useState } from 'react';
 import HeroSection from '@/components/InfoSection';
 import CountdownTimer from '@/components/CountdownTimer';
-import SignupForm from '@/components/SignupForm';
 import { Button } from '@/components/ui/button';
 
 const Index = () => {
