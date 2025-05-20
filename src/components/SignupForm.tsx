@@ -19,7 +19,7 @@ const YC_LINK = "https://www.ycombinator.com/rfs/";
 const SignupForm = ({ variant = "default" }: { variant?: "default" | "outline" }) => {
   const [open, setOpen] = useState(false);
   const [emailError, setEmailError] = useState("");
-  const [registerDisabled, setRegisterDisabled] = useState(true);
+  const [registerDisabled, setRegisterDisabled] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const navigate = useNavigate();
 
@@ -30,18 +30,25 @@ const SignupForm = ({ variant = "default" }: { variant?: "default" | "outline" }
     email: "",
     idea: "",
     linkedin: "",
-    diet: ""
+    team: "",
+    in_person: false
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
     const { name, value } = e.target;
+  
     if (name === "phone_number") {
       const digitsOnly = value.replace(/\D/g, "").slice(0, 10);
       setForm((prev) => ({ ...prev, [name]: digitsOnly }));
+    } else if (name === "in_person") {
+      setForm((prev) => ({ ...prev, [name]: value === "true" }));
     } else {
       setForm((prev) => ({ ...prev, [name]: value }));
     }
   };
+  
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -78,7 +85,8 @@ const SignupForm = ({ variant = "default" }: { variant?: "default" | "outline" }
         email: "",
         idea: "",
         linkedin: "",
-        diet: ""
+        team: "",
+        in_person: false
       });
       setOpen(false);
       navigate("/");
@@ -118,7 +126,7 @@ const SignupForm = ({ variant = "default" }: { variant?: "default" | "outline" }
                 required
                 value={form.first_name}
                 onChange={handleChange}
-                className="mt-1 bg-hackathon-accent border-hackathon-accent placeholder:text-hackathon-dark text-hackathon-dark"
+                className="mt-1 bg-hackathon-accent border-hackathon-accent placeholder:text-hackathon-dark/40 text-hackathon-dark"
                 placeholder="John"
               />
             </div>
@@ -133,7 +141,7 @@ const SignupForm = ({ variant = "default" }: { variant?: "default" | "outline" }
                 required
                 value={form.last_name}
                 onChange={handleChange}
-                className="mt-1 bg-hackathon-accent border-hackathon-accent placeholder:text-hackathon-dark text-hackathon-dark"
+                className="mt-1 bg-hackathon-accent border-hackathon-accent placeholder:text-hackathon-dark/40 text-hackathon-dark"
                 placeholder="Doe"
               />
             </div>
@@ -148,7 +156,7 @@ const SignupForm = ({ variant = "default" }: { variant?: "default" | "outline" }
                 required
                 value={form.phone_number}
                 onChange={handleChange}
-                className="mt-1 bg-hackathon-accent border-hackathon-accent placeholder:text-hackathon-dark text-hackathon-dark"
+                className="mt-1 bg-hackathon-accent border-hackathon-accent placeholder:text-hackathon-dark/40 text-hackathon-dark"
                 placeholder="(555)-123-4567"
                 pattern="\d{10}"
                 maxLength={10}
@@ -166,7 +174,7 @@ const SignupForm = ({ variant = "default" }: { variant?: "default" | "outline" }
                 required
                 value={form.email}
                 onChange={handleChange}
-                className={`mt-1 bg-hackathon-accent border-hackathon-dark text-hackathon-dark placeholder:text-hackathon-dark ${
+                className={`mt-1 bg-hackathon-accent border-hackathon-dark text-hackathon-dark placeholder:text-hackathon-dark/40 ${
                   emailError ? "border-red-500 text-red-300 placeholder-red-400" : ""
                 }`}
                 placeholder="your@email.com"
@@ -183,22 +191,37 @@ const SignupForm = ({ variant = "default" }: { variant?: "default" | "outline" }
                 required
                 value={form.linkedin}
                 onChange={handleChange}
-                className="mt-1 bg-hackathon-accent border-hackathon-accent placeholder:text-hackathon-dark text-hackathon-dark"
+                className="mt-1 bg-hackathon-accent border-hackathon-accent placeholder:text-hackathon-dark/40 text-hackathon-dark"
                 placeholder="linkedin.com/in/example-profile"
               />
             </div>
+            <div className="flex flex-col">
+            <Label htmlFor="in_person" className="text-hackathon-accent">
+              In-Person (True/False) *
+            </Label>
+            <select
+              id="in_person"
+              name="in_person"
+              required
+              value={form.in_person.toString()}
+              onChange={handleChange}
+              className="mt-1 bg-hackathon-accent border-hackathon-accent placeholder:text-hackathon-dark/40 text-hackathon-dark px-2 py-1 rounded"
+            >
+              <option value="true">True</option>
+              <option value="false">False</option>
+            </select>
+          </div>
             <div>
-              <Label htmlFor="diet" className="text-hackathon-accent">
-                Dietary Restrictions *
+              <Label htmlFor="team" className="text-hackathon-accent">
+                Team (Up To 5 People) [Optional]
               </Label>
               <Input
-                id="diet"
-                name="diet"
-                required
-                value={form.diet}
+                id="team"
+                name="team"
+                value={form.team}
                 onChange={handleChange}
-                className="mt-1 bg-hackathon-accent border-hackathon-accent placeholder:text-hackathon-dark text-hackathon-dark"
-                placeholder="Vegan/Halal/None"
+                className="mt-1 bg-hackathon-accent border-hackathon-accent placeholder:text-hackathon-dark/40 text-hackathon-dark"
+                placeholder="John Doe, Jane Doe, ..."
               />
             </div>
             <div>
@@ -210,7 +233,7 @@ const SignupForm = ({ variant = "default" }: { variant?: "default" | "outline" }
                 name="idea"
                 value={form.idea}
                 onChange={handleChange}
-                className="mt-1 bg-hackathon-accent border-hackathon-accent placeholder:text-hackathon-dark text-hackathon-dark"
+                className="mt-1 bg-hackathon-accent border-hackathon-accent placeholder:text-hackathon-dark/40 text-hackathon-dark"
                 placeholder="Describe your idea(s)!"
               />
             </div>
