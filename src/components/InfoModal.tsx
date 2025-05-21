@@ -17,45 +17,44 @@ const InfoModal = ({ isOpen, onClose }: InfoModalProps) => {
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="bg-hackathon-dark border border-[#CCDDEA] text-[#CCDDEA] max-w-2xl">
         <DialogHeader>
-          <DialogTitle className="text-2xl sm:text-3xl red-hat-display-bold">
-            About the Hackathon
+          <DialogTitle className="text-2xl sm:text-3xl red-hat-display-bold lowercase">
+            about the hackathon
           </DialogTitle>
         </DialogHeader>
         <div className="space-y-6 text-base sm:text-lg red-hat-display-light">
           <div className="space-y-2">
-            <p>hack yc-style ideas - earn real funding</p>
-            <p>10 teams of 5 ppl max</p>
+            <p>come with an idea, build and present your mvp, get funding</p>
+            <p>10 teams of 1-5 ppl</p>
           </div>
           <div className="space-y-3">
-            <h3 className="text-xl sm:text-2xl red-hat-display-bold">
-              Key Details:
+            <h3 className="text-xl sm:text-2xl red-hat-display-bold lowercase">
+              key details:
             </h3>
             <ul className="list-disc pl-6 space-y-2">
-              <li>Date: May 30 - Jun 1</li>
-              <li>Time: 7:00 PM</li>
-              <li>Location: 101 West Renner Rd, Richardson, TX 75080</li>
-              <li>Registration Deadline: May 28</li>
+              <li>date: may 30 - june 1</li>
+              <li>time: 7:00 pm</li>
+              <li>location: 101 W Renner Rd, Richardson, TX 75080</li>
+              <li>registration deadline: may 29 11:59 pm</li>
             </ul>
           </div>
           <div className="space-y-3">
-            <h3 className="text-xl sm:text-2xl red-hat-display-bold">
-              What to Expect:
+            <h3 className="text-xl sm:text-2xl red-hat-display-bold lowercase">
+              what to expect:
             </h3>
             <ul className="list-disc pl-6 space-y-2">
-              <li>24-hour coding challenge</li>
               <li>networking opportunities</li>
-              <li>Prizes for winning teams</li>
-              <li>Free food and drinks</li>
+              <li>funding for winning team(s)</li>
+              <li>free food and drinks</li>
             </ul>
           </div>
           <div className="pt-6 flex justify-center">
             <a
-              href="https://docs.google.com/forms/d/e/1FAIpQLScNKrbLV_Rx3XxDUCW2H_mgvLrTz83X_97CJxoB5tSEo7P9bw/viewform?usp=dialog"
+              href="https://partiful.com/e/583UcNbnCpk5dABp4BH1"
               target="_blank"
               rel="noopener noreferrer"
               className="block w-full sm:w-auto"
             >
-              <Button className="w-full sm:w-auto px-8 sm:px-20 py-4 sm:py-6 text-base sm:text-lg font-bold rounded shadow transition-all duration-200 min-w-[140px] border-2 border-hackathon-accent bg-transparent text-hackathon-accent hover:bg-hackathon-accent hover:text-hackathon-dark red-hat-display-bold">
+              <Button className="w-full sm:w-auto px-8 sm:px-20 py-4 sm:py-6 text-base sm:text-lg font-bold rounded shadow transition-all duration-200 min-w-[140px] border-2 border-hackathon-accent bg-transparent text-hackathon-accent hover:bg-hackathon-accent hover:text-hackathon-dark red-hat-display-bold lowercase">
                 register now
               </Button>
             </a>

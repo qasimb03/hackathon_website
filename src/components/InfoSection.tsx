@@ -1,6 +1,6 @@
 const InfoSection = () => {
   return (
-    <div className="flex flex-col items-center justify-center py-6 sm:py-8 md:py-12 text-center px-4">
+    <div className="flex flex-col items-center justify-center py-4 sm:py-6 md:py-8 text-center px-4">
       <div className="space-y-3 sm:space-y-4 max-w-2xl sm:max-w-3xl mx-auto">
         <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl tracking-tight leading-tight red-hat-display-bold">
           <span className="text-hackathon-accent">may 30 - june 1</span>
