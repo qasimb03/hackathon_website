@@ -42,8 +42,8 @@ const InfoModal = ({ isOpen, onClose }: InfoModalProps) => {
               what to expect:
             </h3>
             <ul className="list-disc pl-6 space-y-2">
-              <li>networking opportunities</li>
               <li>funding for winning team(s)</li>
+              <li>networking opportunities</li>
               <li>free food and drinks</li>
             </ul>
           </div>
