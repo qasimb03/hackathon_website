@@ -22,7 +22,10 @@ const InfoModal = ({ isOpen, onClose }: InfoModalProps) => {
           </DialogTitle>
         </DialogHeader>
         <div className="space-y-6 text-base sm:text-lg red-hat-display-light">
-          <p>hack yc-style ideas - earn real funding</p>
+          <div className="space-y-2">
+            <p>hack yc-style ideas - earn real funding</p>
+            <p>10 teams of 5 ppl max</p>
+          </div>
           <div className="space-y-3">
             <h3 className="text-xl sm:text-2xl red-hat-display-bold">
               Key Details:
