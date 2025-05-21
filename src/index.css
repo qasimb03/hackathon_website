@@ -1,5 +1,4 @@
-
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jersey+25&family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -61,8 +60,30 @@
     @apply bg-clip-text text-transparent bg-gradient-to-r from-[#FF5F1F] via-white to-[#FF5F1F] animate-pulse-slow;
   }
   
-  .font-mono {
-    font-family: 'JetBrains Mono', monospace;
-    letter-spacing: -0.03em;
+  .jersey-25-regular {
+    font-family: "Jersey 25", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  .red-hat-display {
+    font-family: "Red Hat Display", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  .red-hat-display-bold {
+    font-family: "Red Hat Display", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+  }
+
+  .red-hat-display-light {
+    font-family: "Red Hat Display", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
   }
 }

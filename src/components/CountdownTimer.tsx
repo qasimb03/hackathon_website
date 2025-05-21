@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 
 interface TimeLeft {
@@ -52,21 +51,18 @@ const CountdownTimer = ({ targetDate }: CountdownTimerProps) => {
   }, [targetDate]);
 
   return (
-    <div className="w-full py-10 font-mono">
-      <div className="grid grid-cols-4 gap-3 md:gap-8">
+    <div className="w-full py-4 sm:py-6 md:py-8">
+      <div className="grid grid-cols-4 gap-2 sm:gap-3 md:gap-4 lg:gap-8">
         {Object.entries(timeLeft).map(([unit, value]) => (
-          <div 
-            key={unit} 
-            className="flex flex-col items-center"
-          >
+          <div key={unit} className="flex flex-col items-center">
             <div className="relative w-full">
-              <div className="bg-hackathon-dark backdrop-blur-sm border border-hackathon-accent p-2 md:p-4 aspect-square flex items-center justify-center">
-                <span className="text-2xl md:text-5xl font-mono tracking-tighter text-hackathon-accent">
+              <div className="bg-hackathon-dark backdrop-blur-sm border border-hackathon-accent p-2 sm:p-3 md:p-4 aspect-square flex items-center justify-center">
+                <span className="text-xl sm:text-2xl md:text-4xl lg:text-5xl tracking-tighter text-hackathon-accent red-hat-display-bold">
                   {value < 10 ? `0${value}` : value}
                 </span>
               </div>
-              <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 bg-hackathon-dark px-2">
-                <span className="text-[10px] md:text-xs uppercase font-mono tracking-wider text-hackathon-accent">
+              <div className="absolute -bottom-2 sm:-bottom-3 left-1/2 transform -translate-x-1/2 bg-hackathon-dark px-1 sm:px-2">
+                <span className="text-[8px] sm:text-[10px] md:text-xs uppercase tracking-wider text-hackathon-accent red-hat-display-light">
                   {unit}
                 </span>
               </div>
