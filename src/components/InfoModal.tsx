@@ -34,7 +34,7 @@ const InfoModal = ({ isOpen, onClose }: InfoModalProps) => {
               <li>date: may 30 - june 1</li>
               <li>time: 7:00 pm</li>
               <li>location: tba</li>
-              <li>registration deadline: may 29 11:59 pm</li>
+              <li>registration deadline: may 28 11:59 pm</li>
             </ul>
           </div>
           <div className="space-y-3">

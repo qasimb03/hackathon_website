@@ -7,9 +7,9 @@ import { Info } from "lucide-react";
 
 const Index = () => {
   const [isInfoModalOpen, setIsInfoModalOpen] = useState(false);
-  // Set the target date for the countdown (May 29th, 11:59 PM)
+  // Set the target date for the countdown (May 28th, 11:59 PM)
   const [registrationDate] = useState(() => {
-    const date = new Date("2025-05-29T23:59:59");
+    const date = new Date("2025-05-28T23:59:59");
     return date;
   });
 
