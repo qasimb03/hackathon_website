@@ -33,7 +33,7 @@ const InfoModal = ({ isOpen, onClose }: InfoModalProps) => {
             <ul className="list-disc pl-6 space-y-2">
               <li>date: may 30 - june 1</li>
               <li>time: 7:00 pm</li>
-              <li>location: tba (dallas)</li>
+              <li>location: 101 W Renner Rd, Richardson, TX 75080</li>
               <li>registration deadline: may 28 11:59 pm</li>
             </ul>
           </div>
